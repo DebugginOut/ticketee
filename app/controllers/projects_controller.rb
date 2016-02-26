@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
-  def index
-    @projects = Project.all
-  end
 
+
+# The Create in CRUD
   def new
     @project = Project.new
   end
@@ -18,10 +17,30 @@ class ProjectsController < ApplicationController
     end
   end
 
+  #The Read in CRUD
+  def index
+    @projects = Project.all
+  end
+
   def show
     @project = Project.find(params[:id])
   end
 
+#The Update in CRUD
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      flash[:notice] = "Project has been updated."
+      redirect_to @project
+    else
+      flash[:notice] = "Project has not been updated."
+      redirect_to @project
+    end
+  end
 
   private
 
