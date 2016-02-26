@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  #The Read in CRUD
+#The Read in CRUD
   def index
     @projects = Project.all
   end
@@ -41,6 +41,17 @@ class ProjectsController < ApplicationController
       redirect_to @project
     end
   end
+
+#Destroy in CRUD
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    flash[:notice] = "Project has been destroyed."
+
+    redirect_to projects_path
+  end
+
 
   private
 
